@@ -1,4 +1,5 @@
 import 'package:archi/View/starting-view/splash-view/splash-view.dart';
+import 'package:archi/container.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -32,7 +33,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SplashScreen()//const MyHomePage(title: 'Flutter Demo Home Page'),
+      home:
+      ContainerClass()
+      //SplashScreen()//const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
