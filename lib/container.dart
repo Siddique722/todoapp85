@@ -1,4 +1,5 @@
 import 'package:archi/Controller/constants/app-colors/app-colors.dart';
+import 'package:archi/Controller/constants/app-icons/app-icons.dart';
 import 'package:flutter/material.dart';
 class ContainerClass extends StatelessWidget {
   const ContainerClass({super.key});
@@ -13,7 +14,8 @@ class ContainerClass extends StatelessWidget {
               height: 400,
               width: double.infinity,
               color: AppColors.primaryColor,
-            )
+            ),
+            
           ],),
           Container(
             height: 100,
@@ -40,6 +42,18 @@ class ContainerClass extends StatelessWidget {
                 )
               ),
             ),
+          Padding(
+            padding: const EdgeInsets.only(left: 18.0,top: 20),
+            child: InkWell(
+              onTap: (){
+                Navigator.pop(context);
+              },
+              child: ImageIcon(
+                  AssetImage(AppIcons.backArrowIcon),
+              size: 50,
+              ),
+            ),
+          )
 
         ],
       )
