@@ -1,9 +1,7 @@
 import 'package:archi/Controller/constants/app-colors/app-colors.dart';
-import 'package:archi/Controller/constants/app-images/app-images.dart';
 import 'package:archi/Controller/constants/app-loader/apploader.dart';
 import 'package:archi/Controller/widgets/blacktext-heading-widget.dart';
 import 'package:archi/Controller/widgets/button-widget.dart';
-import 'package:archi/Controller/widgets/image-widget.dart';
 import 'package:archi/Controller/widgets/normat-text-widget.dart';
 import 'package:archi/Controller/widgets/textformfield-widget.dart';
 import 'package:archi/View/auth-view/signin-view/signin-view.dart';
@@ -73,7 +71,7 @@ class _SignupViewState extends State<SignupView> {
                       Navigator.push(
                           context,
                           CupertinoPageRoute(
-                              builder: (context) => LoginView()));
+                              builder: (context) => SigninView()));
                     }).onError((value, error) {
                       isLoading = false;
                       setState(() {});
@@ -95,7 +93,9 @@ class _SignupViewState extends State<SignupView> {
                 width: 5,
               ),
               InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => SigninView());
+                  },
                   child: NormalTextWidget(
                       text: 'Sign In', textColor: AppColors.primaryColor)),
             ],
