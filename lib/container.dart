@@ -1,6 +1,8 @@
 import 'package:archi/Controller/constants/app-colors/app-colors.dart';
 import 'package:archi/Controller/constants/app-icons/app-icons.dart';
 import 'package:archi/View/auth-view/signup-view/signup-view.dart';
+import 'package:archi/View/home-view/insert-view/insert-view.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,10 @@ class ContainerClass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        Navigator.push(context, CupertinoDialogRoute(builder: (context)=>InsertDataScreen(),
+            context: context));
+      },backgroundColor: AppColors.primaryColor,child: Icon(Icons.add,color: AppColors.whiteColor,),),
       body:Stack(
         children: [
           Column(children: [
@@ -18,7 +24,13 @@ class ContainerClass extends StatelessWidget {
               width: double.infinity,
               color: AppColors.primaryColor,
             ),
-            
+            Container(child: Expanded(child:
+            StreamBuilder(
+              stream:FirebaseFirestore.instance.collection('Test').snapshots() ,
+              builder: ,
+
+            ),
+            ),)
           ],),
           Container(
             height: 100,

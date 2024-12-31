@@ -1,3 +1,4 @@
+import 'package:archi/View/home-view/insert-view/insert-view.dart';
 import 'package:archi/View/starting-view/splash-view/splash-view.dart';
 import 'package:archi/bool-select/bool-selected.dart';
 import 'package:archi/bool-select/multi-selected.dart';
@@ -51,8 +52,9 @@ class MyApp extends StatelessWidget {
             //BottomNav()
             // MultiSelection()
             //  BoolSelected()
-            //ContainerClass()
-        PasswordField()
+            ContainerClass()
+        //InsertDataScreen()
+      // PasswordField()
       // SplashScreen() //const MyHomePage(title: 'Flutter Demo Home Page'),
         );
   }
