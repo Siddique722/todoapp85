@@ -5,6 +5,8 @@ import 'package:archi/Controller/widgets/blacktext-heading-widget.dart';
 import 'package:archi/Controller/widgets/button-widget.dart';
 import 'package:archi/Controller/widgets/image-widget.dart';
 import 'package:archi/View/auth-view/signup-view/signup-view.dart';
+import 'package:archi/container.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,14 +20,31 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   // nitial state function
-  //  @override
-  //  void initState() {
-  //    // TODO: implement initState
-  //    super.initState();
-  //    Future.delayed(Duration(seconds: 3),(){
-  //      Navigator.push(context, MaterialPageRoute(builder: (context)=>SignupView()));
-  //    });
-  //  }
+   @override
+   void initState() {
+     // TODO: implement initState
+     super.initState();
+     Future.delayed(Duration(seconds: 3),(){
+     islogedin();
+     });
+   }
+
+   islogedin()async
+   {
+     User? check= await FirebaseAuth.instance.currentUser;
+     if(check==null)
+     {
+       Navigator.push(context,
+           MaterialPageRoute(builder: (context) => SignupView()));
+     }
+     else
+     {
+       Navigator.push(context,
+           MaterialPageRoute(builder: (context) => ContainerClass()));
+     }
+   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +82,22 @@ class _SplashScreenState extends State<SplashScreen> {
 
             ButtonWidget(
                 text: 'Get Started',
-                ontap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignupView()));
+                ontap: ()//async
+                {
+                // User? check= await FirebaseAuth.instance.currentUser;
+                // if(check==null)
+                //   {
+                //     Navigator.push(context,
+                //         MaterialPageRoute(builder: (context) => SignupView()));
+                //   }
+                // else
+                //   {
+                //     Navigator.push(context,
+                //         MaterialPageRoute(builder: (context) => ContainerClass()));
+                //   }
+
+
+
                 })
           ],
         ),

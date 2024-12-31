@@ -1,5 +1,8 @@
 import 'package:archi/Controller/constants/app-colors/app-colors.dart';
 import 'package:archi/Controller/constants/app-icons/app-icons.dart';
+import 'package:archi/View/auth-view/signup-view/signup-view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 class ContainerClass extends StatelessWidget {
   const ContainerClass({super.key});
@@ -43,15 +46,24 @@ class ContainerClass extends StatelessWidget {
               ),
             ),
           Padding(
-            padding: const EdgeInsets.only(left: 18.0,top: 20),
-            child: InkWell(
-              onTap: (){
-                Navigator.pop(context);
-              },
-              child: ImageIcon(
-                  AssetImage(AppIcons.backArrowIcon),
-              size: 50,
-              ),
+            padding: const EdgeInsets.only(left: 18.0,top: 20,right: 18),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: (){
+                    Navigator.pop(context);
+                  },
+                  child: ImageIcon(
+                      AssetImage(AppIcons.backArrowIcon),
+                  size: 50,
+                  ),
+                ),
+                IconButton(onPressed: ()async{
+                  await FirebaseAuth.instance.signOut();
+                  Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=>SignupView()));
+                }, icon: Icon(Icons.logout))
+              ],
             ),
           )
 

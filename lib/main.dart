@@ -8,6 +8,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
+import 'password-field.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //await Firebase.initializeApp();
@@ -50,7 +52,8 @@ class MyApp extends StatelessWidget {
             // MultiSelection()
             //  BoolSelected()
             //ContainerClass()
-            SplashScreen() //const MyHomePage(title: 'Flutter Demo Home Page'),
+        PasswordField()
+      // SplashScreen() //const MyHomePage(title: 'Flutter Demo Home Page'),
         );
   }
 }
