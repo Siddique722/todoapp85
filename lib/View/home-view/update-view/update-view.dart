@@ -5,45 +5,32 @@ import 'package:archi/Controller/widgets/button-widget.dart';
 import 'package:archi/Controller/widgets/normat-text-widget.dart';
 import 'package:archi/Controller/widgets/textformfield-widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class InsertDataScreen extends StatefulWidget {
-  InsertDataScreen({super.key});
+class UpdateView extends StatefulWidget {
+  String docid;
+  UpdateView({super.key, required this.docid});
 
   @override
-  State<InsertDataScreen> createState() => _InsertDataScreenState();
+  State<UpdateView> createState() => _UpdateViewState();
 }
 
-class _InsertDataScreenState extends State<InsertDataScreen> {
+class _UpdateViewState extends State<UpdateView> {
   TextEditingController nameController = TextEditingController();
   TextEditingController fatherNameController = TextEditingController();
   bool isLoading = false;
-  insertData() async {
+  updateData() async {
     try {
-      isLoading = true;
-      setState(() {});
-      User? user = await FirebaseAuth.instance.currentUser;
-      String userId = user!.uid;
-      String docid = DateTime.now().microsecondsSinceEpoch.toString();
-      await FirebaseFirestore.instance.collection(userId).doc(docid).set({
-        // key : value
-        // String: any data type
+      await FirebaseFirestore.instance
+          .collection('Test')
+          .doc(widget.docid)
+          .update({
         'studentName': nameController.text,
-        'fatherName': fatherNameController.text,
-        'docid': docid,
-        'userid': userId,
+        'fatherName': fatherNameController.text
       });
-      isLoading = false;
-      setState(() {});
       Navigator.pop(context);
-    } catch (e) {
-      // error
-      isLoading = false;
-      setState(() {});
-      Get.snackbar('Error', '${e.toString()}');
-    }
+    } catch (e) {}
   }
 
   @override
@@ -55,7 +42,7 @@ class _InsertDataScreenState extends State<InsertDataScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BlackTextHeading(text: 'Insert Data'),
+            BlackTextHeading(text: 'Update Data'),
             SizedBox(
               height: 20,
             ),
@@ -85,7 +72,7 @@ class _InsertDataScreenState extends State<InsertDataScreen> {
                 : ButtonWidget(
                     text: 'Save Data',
                     ontap: () {
-                      insertData();
+                      //   insertData();
                       // Perform save data logic here
                     },
                   ),
